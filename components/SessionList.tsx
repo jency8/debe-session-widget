@@ -14,31 +14,39 @@ export default function SessionList({
   return (
     <div className="session-list">
       {sessions.map((session) => (
-        <div className="session-card" key={session.id}>
-          <div>
-            <p className="session-subject">{session.subject}</p>
+        <article className="session-card" key={session.id}>
+          <div className="session-top">
+            <div>
+              <h2 className="session-subject">
+                {session.subject}
+              </h2>
 
-            <p>
-              <strong>Teacher:</strong> {session.teacherName}
-            </p>
+              <p className="teacher">
+                <strong>Teacher:</strong>{" "}
+                {session.teacherName}
+              </p>
+            </div>
 
-            <p>
-              <strong>Date & Time:</strong>{" "}
-              {new Date(session.datetime).toLocaleString()}
-            </p>
-
-            <span className="session-status">
+            <span className="status">
               {session.status}
             </span>
           </div>
 
+          <div className="session-details">
+            <div>
+              <strong>Date &amp; Time:</strong>{" "}
+              {new Date(session.datetime).toLocaleString()}
+            </div>
+          </div>
+
           <button
             type="button"
+            className="reschedule-button"
             onClick={() => onReschedule(session)}
           >
             Request Reschedule
           </button>
-        </div>
+        </article>
       ))}
     </div>
   );

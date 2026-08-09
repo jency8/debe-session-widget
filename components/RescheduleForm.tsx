@@ -51,10 +51,16 @@ export default function RescheduleForm({
       return;
     }
 
-    // datetime-local represents the parent's local wall-clock time.
-    // Converting it with Date and toISOString() stores the selected
-    // value as UTC before sending it to the backend.
-    const newSlotUTC = new Date(newSlot).toISOString();
+    const newSlotDate = new Date(newSlot);
+
+    if (newSlotDate.getTime() < Date.now() + 2 * 60 * 60 * 1000) {
+      setError(
+        "Please select a time at least 2 hours from now."
+      );
+      return;
+    }
+
+    const newSlotUTC = newSlotDate.toISOString();
 
     setLoading(true);
 
@@ -67,11 +73,16 @@ export default function RescheduleForm({
       });
 
       if (!response.success) {
-        setError(response.error ?? "Unable to reschedule.");
+        setError(
+          response.error ?? "Unable to reschedule."
+        );
         return;
       }
 
-      alert("Reschedule request submitted successfully.");
+      alert(
+        "Reschedule request submitted successfully."
+      );
+
       onClose();
     } catch {
       setError(
@@ -83,15 +94,17 @@ export default function RescheduleForm({
   };
 
   return (
-    <div className="form-container">
+    <section className="form-container">
       <h2>Request Reschedule</h2>
 
       <p>
-        <strong>Subject:</strong> {session.subject}
+        <strong>Subject:</strong>{" "}
+        {session.subject}
       </p>
 
       <p>
-        <strong>Teacher:</strong> {session.teacherName}
+        <strong>Teacher:</strong>{" "}
+        {session.teacherName}
       </p>
 
       <form onSubmit={handleSubmit}>
@@ -136,14 +149,15 @@ export default function RescheduleForm({
         </select>
 
         {error && (
-          <p role="alert">
+          <p className="form-error" role="alert">
             {error}
           </p>
         )}
 
-        <div>
+        <div className="form-actions">
           <button
             type="submit"
+            className="submit-button"
             disabled={loading}
           >
             {loading
@@ -153,6 +167,7 @@ export default function RescheduleForm({
 
           <button
             type="button"
+            className="cancel-button"
             onClick={onClose}
             disabled={loading}
           >
@@ -160,6 +175,6 @@ export default function RescheduleForm({
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
