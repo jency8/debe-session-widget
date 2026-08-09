@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Debe Learning - Tutoring Session Widget
 
-## Getting Started
+A responsive tutoring session widget built with Next.js and TypeScript.
 
-First, run the development server:
+## Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project allows parents to view upcoming tutoring sessions and request a reschedule for a selected session.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The rescheduling flow includes client-side validation and server-side validation to ensure that invalid session times cannot be submitted.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- View upcoming tutoring sessions
+- Display subject, teacher, date and time
+- Show session status
+- Request session rescheduling
+- Select a new date and time
+- Select a rescheduling reason
+- Validate that the new time is at least 2 hours from the current time
+- Prevent selecting the existing session time
+- Prevent past session times
+- Show `Submitting...` while the request is being processed
+- Display success or validation error messages
+- Responsive UI
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js
+- React
+- TypeScript
+- CSS
+- Turbopack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+debe-session-widget/
+├── app/
+│   ├── page.tsx
+│   ├── layout.tsx
+│   └── globals.css
+├── components/
+│   ├── SessionList.tsx
+│   └── RescheduleForm.tsx
+├── data/
+│   └── sessions.ts
+├── lib/
+│   └── requestReschedule.ts
+├── types/
+│   └── session.ts
+├── public/
+├── package.json
+└── README.md
