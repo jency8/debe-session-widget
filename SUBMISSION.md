@@ -44,12 +44,15 @@ I would improve the project structure by separating reusable UI components, auth
 
 ---
 
-# Part 2 — Debugging Round
+## Part 2 — Debugging Round
 
-I created the following files in the repository:
+Repository:
+https://github.com/jency8/debe-part2-debug
 
-- `part2-debug/original.ts`
-- `part2-debug/fixed.ts`
+Files:
+
+- `original.ts` — original assessment code
+- `fixed.ts` — corrected version with comments explaining the fixes
 
 The fixed version addresses the logic, asynchronous handling, typing, and security concerns in the original Cloud Function.
 
